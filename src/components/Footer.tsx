@@ -1,4 +1,3 @@
-import Logo from '@/assets/Logo';
 import React from 'react';
 import Image from 'next/image';
 

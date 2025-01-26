@@ -1,4 +1,3 @@
-import Logo from '@/assets/Logo';
 import React from 'react';
 import Link from 'next/link';
 import TwitterIcon from '@/assets/TwitterIcon';
