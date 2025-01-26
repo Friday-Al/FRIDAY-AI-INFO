@@ -3,13 +3,13 @@ import React from 'react';
 const DevelopmentProgress = () => {
   const stages = [
     { name: 'ROADMAP', completed: true, className: 'text-left' },
-    { name: 'GITHUB', completed: false, className: 'text-left sm:ml-2' },
+    { name: 'GITHUB', completed: true, className: 'text-left sm:ml-2' },
     { name: 'DEMO', completed: false, className: 'text-center' },
     { name: 'BETA', completed: false, className: 'text-right sm:mr-4' },
     { name: 'RELEASE', completed: false, className: 'text-right' },
   ];
 
-  const progress = 20; // 20% progress
+  const progress = 35; // 20% progress
 
   return (
     <div className="flex flex-col sm:flex-row items-center justify-center w-full px-4 sm:px-0">
