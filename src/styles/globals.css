@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 
+  --foreground: #ededed;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #000;
+    --foreground: #ededed;
+  }
+}
+
+@layer base {
+  :root {
+    --max-w-lg: 1440px;
+    --max-w-sm: 720px;
+  }
+}
+
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+}
+
+.large-container {
+  max-width: var(--max-w-lg);
+  margin: 0 auto;
+}
+
+.small-container {
+  max-width: var(--max-w-sm);
+  margin: 0 auto;
+}
