@@ -12,8 +12,11 @@ const ProtoMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'Friday',
+  title: 'Friday AI',
   description: 'AI powered crypto trading',
+  icons: {
+    icon: './images/f-logo.png',
+  },
 };
 
 export default function RootLayout({
