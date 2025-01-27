@@ -125,9 +125,9 @@ const InfoSection: React.FC = () => {
   });
 
   const getDesktopPositions = () => ({
-    core: { x: 50, y: 50 },
+    core: { x: 0, y: 50 },
     features: { x: 750, y: 200 },
-    opensource: { x: 50, y: 550 },
+    opensource: { x: 0, y: 550 },
     vision: { x: 750, y: 800 },
   });
 
@@ -254,7 +254,11 @@ const InfoSection: React.FC = () => {
     : [];
 
   return (
-    <div className={`w-full ${isMobile ? 'h-[2000px]' : 'h-[1200px]'}`}>
+    <div
+      className={`w-full max-w-[1350px] mx-auto ${
+        isMobile ? 'h-[2000px]' : 'h-[1200px]'
+      }`}
+    >
       <ReactFlow
         nodes={initialNodes}
         edges={initialEdges}
