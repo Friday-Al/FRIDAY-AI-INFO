@@ -50,16 +50,16 @@ const DevelopmentProgress = () => {
             {/* Progress bar container */}
             <div className="relative h-6 sm:h-8">
               {/* Base line */}
-              <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 h-[1px] bg-white/10" />
+              <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 h-[7px] bg-white/10" />
 
               {/* Progress fill */}
               <div
-                className="absolute top-1/2 -translate-y-1/2 left-0 h-[1px] bg-white"
+                className="absolute top-1/2 -translate-y-1/2 left-0 h-[7px] bg-white"
                 style={{ width: `${progress}%` }}
               />
 
               {/* Stage markers */}
-              <div className="absolute top-0 left-0 right-0 flex justify-between">
+              <div className="absolute top-1 left-0 right-0 flex justify-between">
                 {stages.map((stage, index) => {
                   const position = (index / (stages.length - 1)) * 100;
                   const isCompleted = position <= progress;
@@ -68,7 +68,7 @@ const DevelopmentProgress = () => {
                     <div
                       key={stage.name}
                       className="relative"
-                      style={{ height: '24px', width: '1px' }}
+                      style={{ height: '17px', width: '3px' }}
                     >
                       <div
                         className={`w-full h-1/2 ${
