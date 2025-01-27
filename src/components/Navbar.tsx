@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import TwitterIcon from '@/assets/TwitterIcon';
-import TelegramIcon from '@/assets/TelegramIcon';
 import GitHubIcon from '@/assets/GitHubIcon';
 import DexscreenerIcon from '@/assets/DexscreenerIcon';
 import Image from 'next/image';
