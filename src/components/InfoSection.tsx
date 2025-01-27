@@ -76,7 +76,7 @@ const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
         <div className="relative">
           <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
             {icon}
-            <h2 className="text-white font-mono text-xs md:text-sm tracking-[0.25em] font-medium">
+            <h2 className="text-white font-mono text-[18px] md:text-[21px] font-normal">
               {title}
             </h2>
           </div>
@@ -86,7 +86,7 @@ const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
               {content.map((feature: string, index: number) => (
                 <li
                   key={index}
-                  className="text-white/90 font-mono text-xs md:text-sm leading-relaxed tracking-wide flex items-start"
+                  className="text-white/90 text-xs md:text-sm font-normal tracking-wide leading-relaxed text-left flex items-start font-mono"
                 >
                   <span className="mr-2 md:mr-3 text-white/50">-</span>
                   <span>{feature}</span>
@@ -98,7 +98,7 @@ const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
               {content.map((paragraph: string, i: number) => (
                 <p
                   key={i}
-                  className="text-white/90 font-mono text-xs md:text-sm leading-relaxed tracking-wide"
+                  className="text-white/90 text-xs md:text-sm font-normal text-left font-mono tracking-wide leading-relaxed"
                 >
                   {paragraph}
                 </p>
@@ -118,10 +118,10 @@ const InfoSection: React.FC = () => {
   };
 
   const getMobilePositions = () => ({
-    core: { x: 50, y: 75 },
-    features: { x: 50, y: 450 },
-    vision: { x: 50, y: 1075 },
-    opensource: { x: 50, y: 1565 },
+    core: { x: 50, y: 50 },
+    features: { x: 50, y: 430 },
+    vision: { x: 50, y: 1060 },
+    opensource: { x: 50, y: 1555 },
   });
 
   const getDesktopPositions = () => ({
@@ -254,7 +254,7 @@ const InfoSection: React.FC = () => {
     : [];
 
   return (
-    <div className={`w-full ${isMobile ? 'h-[1900px]' : 'h-[1000px]'}`}>
+    <div className={`w-full ${isMobile ? 'h-[2000px]' : 'h-[1000px]'}`}>
       <ReactFlow
         nodes={initialNodes}
         edges={initialEdges}

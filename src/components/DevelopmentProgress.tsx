@@ -56,11 +56,11 @@ const DevelopmentProgress = () => {
                     <div
                       key={stage.name}
                       className="relative"
-                      style={{ height: '17px', width: '3px' }}
+                      style={{ height: '17px', width: '2px' }}
                     >
                       <div
                         className={`w-full h-1/2 ${
-                          isCompleted ? 'bg-white' : 'bg-white/20'
+                          isCompleted ? 'bg-white' : ' bg-[#1A1A1A]'
                         }`}
                       />
                     </div>
