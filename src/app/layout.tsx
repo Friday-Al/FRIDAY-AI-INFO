@@ -13,7 +13,8 @@ const ProtoMono = localFont({
 
 export const metadata: Metadata = {
   title: 'Friday AI',
-  description: 'AI powered crypto trading',
+  description:
+    'Friday AI turns real-time news into tokens. We use DeepSeek to analyze trends, mindshare and attention. Profits used to buyback & burn $FRIDAY.',
   icons: {
     icon: './images/f-logo.png',
   },
