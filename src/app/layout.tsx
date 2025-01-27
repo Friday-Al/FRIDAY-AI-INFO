@@ -28,9 +28,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`dark ${ProtoMono.className} antialiased w-full h-full px-10 py-6 max-md:py-4 max-md:px-5 space-y-10`}
+        className={`dark ${ProtoMono.className} antialiased w-full h-full space-y-10`}
       >
-        <Navbar />
+        <div className="px-10 py-6 max-md:py-4 max-md:px-5 w-full">
+          <Navbar />
+        </div>
         {children}
         <Footer />
       </body>

@@ -54,7 +54,7 @@ const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
   const { icon, title, content, type, isRightSide } = data;
 
   return (
-    <div className={isMobile ? 'w-[300px]' : 'w-[520px]'}>
+    <div className={isMobile ? 'w-[300px]' : 'w-[598px]'}>
       {!isMobile &&
         (isRightSide ? (
           <Handle
@@ -72,7 +72,7 @@ const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
           />
         ))}
 
-      <div className="relative bg-[#0A0A0A] rounded-2xl p-6 md:p-8 border border-white">
+      <div className="relative rounded-2xl p-6 md:p-8 border border-white">
         <div className="relative">
           <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
             {icon}
@@ -260,7 +260,7 @@ const InfoSection: React.FC = () => {
         edges={initialEdges}
         nodeTypes={nodeTypes}
         fitView
-        className="bg-transparent"
+        className="bg-transparent mx-auto"
         minZoom={isMobile ? 1 : 0.8}
         maxZoom={isMobile ? 1 : 0.8}
         defaultViewport={{ x: 0, y: 0, zoom: isMobile ? 1 : 0.8 }}

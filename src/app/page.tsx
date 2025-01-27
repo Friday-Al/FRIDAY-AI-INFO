@@ -36,8 +36,8 @@ const AnimatedSection = ({
 
 const Page = () => {
   return (
-    <div className="w-full h-full flex flex-col gap-20 large-container">
-      <div className="small-container space-y-20">
+    <div className="w-full h-full flex flex-col gap-20">
+      <div className="small-container space-y-20 seperator-line px-10 py-6 max-md:py-4 max-md:px-5">
         <AnimatedSection>
           <HeroText />
         </AnimatedSection>
@@ -51,9 +51,11 @@ const Page = () => {
         <DevelopmentProgress />
       </AnimatedSection>
 
-      <AnimatedSection>
-        <InfoSection />
-      </AnimatedSection>
+      <div className="px-10 py-6 max-md:py-4 max-md:px-5 w-full h-full">
+        <AnimatedSection>
+          <InfoSection />
+        </AnimatedSection>
+      </div>
     </div>
   );
 };
