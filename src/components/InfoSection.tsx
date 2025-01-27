@@ -120,8 +120,8 @@ const InfoSection: React.FC = () => {
   const getMobilePositions = () => ({
     core: { x: 50, y: 75 },
     features: { x: 50, y: 450 },
-    vision: { x: 50, y: 1040 },
-    opensource: { x: 50, y: 1535 },
+    vision: { x: 50, y: 1075 },
+    opensource: { x: 50, y: 1565 },
   });
 
   const getDesktopPositions = () => ({
@@ -139,7 +139,13 @@ const InfoSection: React.FC = () => {
       type: 'custom',
       position: positions.core,
       data: {
-        icon: <GroupIcon className="w-5 h-5 md:w-6 md:h-6 text-white" />,
+        icon: (
+          <GroupIcon
+            className="w-5 h-5 md:w-6 md:h-6 text-white overflow-visible"
+            width={isMobile ? 20 : 24}
+            height={isMobile ? 20 : 24}
+          />
+        ),
         title: 'CORE DIRECTIVE',
         content: [
           'Launch tokens on pump fun based on current news and market trends. Our AI gathers information and analyzes data from various sources using different AI systems and techniques.',
@@ -153,7 +159,13 @@ const InfoSection: React.FC = () => {
       type: 'custom',
       position: positions.features,
       data: {
-        icon: <FeatureIcon className="w-5 h-5 md:w-6 md:h-6 text-white" />,
+        icon: (
+          <FeatureIcon
+            className="w-5 h-5 md:w-6 md:h-6 text-white overflow-visible"
+            width={isMobile ? 20 : 24}
+            height={isMobile ? 20 : 24}
+          />
+        ),
         title: 'KEY FEATURES',
         type: 'features',
         content: [
@@ -173,7 +185,13 @@ const InfoSection: React.FC = () => {
       type: 'custom',
       position: positions.opensource,
       data: {
-        icon: <KeyIcon className="w-5 h-5 md:w-6 md:h-6 text-white" />,
+        icon: (
+          <KeyIcon
+            className="w-5 h-5 md:w-6 md:h-6 text-white overflow-visible"
+            width={isMobile ? 20 : 24}
+            height={isMobile ? 20 : 24}
+          />
+        ),
         title: 'OPEN SOURCE',
         content: [
           "The source code for this AI agent will be made publicly available, enabling developers to fork it and contribute to FRIDAY's ongoing development. By encouraging collaboration and innovation, we aim to build a versatile ecosystem where users can expand upon the foundation we've created.",
@@ -187,7 +205,13 @@ const InfoSection: React.FC = () => {
       type: 'custom',
       position: positions.vision,
       data: {
-        icon: <OneZeroIcon className="w-5 h-5 md:w-6 md:h-6 text-white" />,
+        icon: (
+          <OneZeroIcon
+            className="w-5 h-5 md:w-6 md:h-6 text-white overflow-visible"
+            width={isMobile ? 20 : 24}
+            height={isMobile ? 20 : 24}
+          />
+        ),
         title: 'VISION',
         content: [
           "This AI agent is more than just a tool-it's a catalyst for innovation. By integrating real-time insights, advanced automation, and open-source accessibility, we empower users and developers to transform how tokens are launched and managed.",
