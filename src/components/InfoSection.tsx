@@ -1,19 +1,13 @@
 'use client';
 import React from 'react';
-import ReactFlow, {
-  Background,
-  Edge,
-  Handle,
-  Position,
-  Node,
-  BackgroundVariant,
-} from 'reactflow';
-import { Settings, Github, Eye } from 'lucide-react';
-import 'reactflow/dist/style.css';
+import ReactFlow, { Edge, Handle, Position, Node } from 'reactflow';
+
 import GroupIcon from '@/assets/GroupIcon';
 import FeatureIcon from '@/assets/FeatureIcon';
 import KeyIcon from '@/assets/KeyIcon';
 import OneZeroIcon from '@/assets/OneZeroIcon';
+
+import 'reactflow/dist/style.css';
 
 const useWindowSize = () => {
   const [windowSize, setWindowSize] = React.useState({
@@ -56,7 +50,7 @@ interface CustomNodeProps {
 }
 
 const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
-  const { width, isMobile } = useWindowSize();
+  const { isMobile } = useWindowSize();
   const { icon, title, content, type, isRightSide } = data;
 
   return (
