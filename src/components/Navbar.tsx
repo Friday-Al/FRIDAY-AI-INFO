@@ -5,6 +5,7 @@ import TelegramIcon from '@/assets/TelegramIcon';
 import GitHubIcon from '@/assets/GitHubIcon';
 import DexscreenerIcon from '@/assets/DexscreenerIcon';
 import Image from 'next/image';
+import DiscordIcon from '@/assets/DiscordIcon';
 
 const Navbar = () => {
   return (
@@ -19,10 +20,10 @@ const Navbar = () => {
           <TwitterIcon />
         </Link>
         <Link
-          href=""
+          href="https://discord.gg/CSpxET3D6u"
           className="transform transition-transform duration-200 hover:scale-110 hover:opacity-80"
         >
-          <TelegramIcon />
+          <DiscordIcon />
         </Link>
         <Link
           href="https://github.com/Friday-Al"

@@ -54,7 +54,7 @@ const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
   const { icon, title, content, type, isRightSide } = data;
 
   return (
-    <div className={isMobile ? 'w-[300px]' : 'w-[598px]'}>
+    <div className={isMobile ? 'w-[300px] mx-auto' : 'w-[598px]'}>
       {!isMobile &&
         (isRightSide ? (
           <Handle
@@ -118,10 +118,10 @@ const InfoSection: React.FC = () => {
   };
 
   const getMobilePositions = () => ({
-    core: { x: 50, y: 50 },
-    features: { x: 50, y: 430 },
-    vision: { x: 50, y: 1060 },
-    opensource: { x: 50, y: 1555 },
+    core: { x: 25, y: 50 },
+    features: { x: 25, y: 430 },
+    vision: { x: 25, y: 1060 },
+    opensource: { x: 25, y: 1555 },
   });
 
   const getDesktopPositions = () => ({
@@ -254,13 +254,12 @@ const InfoSection: React.FC = () => {
     : [];
 
   return (
-    <div className={`w-full ${isMobile ? 'h-[2000px]' : 'h-[1000px]'}`}>
+    <div className={`w-full ${isMobile ? 'h-[2000px]' : 'h-[1200px]'}`}>
       <ReactFlow
         nodes={initialNodes}
         edges={initialEdges}
         nodeTypes={nodeTypes}
-        fitView
-        className="bg-transparent mx-auto"
+        className="bg-transparent mx-auto w-full"
         minZoom={isMobile ? 1 : 0.8}
         maxZoom={isMobile ? 1 : 0.8}
         defaultViewport={{ x: 0, y: 0, zoom: isMobile ? 1 : 0.8 }}

@@ -17,7 +17,7 @@
 @layer base {
   :root {
     --max-w-lg: 1440px;
-    --max-w-sm: 720px;
+    --max-w-sm: 1000px;
   }
 }
 
@@ -36,4 +36,8 @@ body {
 .small-container {
   max-width: var(--max-w-sm);
   margin: 0 auto;
+}
+
+.react-flow__viewport,.react-flow__container{
+  transform: translate(0px, 0px) scale(1) !important;
 }

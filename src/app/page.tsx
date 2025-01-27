@@ -43,7 +43,7 @@ const Page = () => {
         </AnimatedSection>
 
         <AnimatedSection>
-          <FlowDiagram />
+          <FlowDiagram className="w-full" />
         </AnimatedSection>
       </div>
 
