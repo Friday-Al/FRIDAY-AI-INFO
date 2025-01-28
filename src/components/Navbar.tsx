@@ -32,7 +32,8 @@ const Navbar = () => {
           <GitHubIcon />
         </Link>
         <Link
-          href=""
+          href="https://dexscreener.com/solana/41worjccofcvsz17mpety7urdtfc3ngmxzz3cw1fzjs5"
+          target="_blank"
           className="transform transition-transform duration-200 hover:scale-110 hover:opacity-80"
         >
           <DexscreenerIcon />
