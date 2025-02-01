@@ -9,7 +9,7 @@ const DevelopmentProgress = () => {
     { name: 'RELEASE', completed: false, className: 'text-right' },
   ];
 
-  const progress = 35; // 20% progress
+  const progress = 50;
 
   return (
     <div className="flex flex-col sm:flex-row items-center justify-center w-full px-4 sm:px-0">
