@@ -1,6 +1,8 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactFlow, { Edge, Handle, Position, Node } from 'reactflow';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 import GroupIcon from '@/assets/GroupIcon';
 import FeatureIcon from '@/assets/FeatureIcon';
@@ -52,6 +54,44 @@ interface CustomNodeProps {
 const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
   const { isMobile } = useWindowSize();
   const { icon, title, content, type, isRightSide } = data;
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    }
+  }, [controls, inView]);
+
+  const containerVariants = {
+    hidden: {
+      opacity: 0,
+      x: isRightSide ? 50 : -50,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.8,
+        ease: 'easeOut',
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
 
   return (
     <div className={isMobile ? 'w-[300px] mx-auto' : 'w-[598px]'}>
@@ -72,41 +112,52 @@ const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
           />
         ))}
 
-      <div className="relative rounded-2xl p-6 md:p-8 border border-white">
+      <motion.div
+        ref={ref}
+        initial="hidden"
+        animate={controls}
+        variants={containerVariants}
+        className="relative rounded-2xl p-6 md:p-8 border border-white"
+      >
         <div className="relative">
-          <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+          <motion.div
+            variants={itemVariants}
+            className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6"
+          >
             {icon}
             <h2 className="text-white font-mono text-[18px] md:text-[21px] font-normal">
               {title}
             </h2>
-          </div>
+          </motion.div>
 
           {type === 'features' ? (
-            <ul className="space-y-3 md:space-y-4">
+            <motion.ul className="space-y-3 md:space-y-4">
               {content.map((feature: string, index: number) => (
-                <li
+                <motion.li
                   key={index}
+                  variants={itemVariants}
                   className="text-white/90 text-xs md:text-sm font-normal tracking-wide leading-relaxed text-left flex items-start font-mono"
                 >
                   <span className="mr-2 md:mr-3 text-white/50">-</span>
                   <span>{feature}</span>
-                </li>
+                </motion.li>
               ))}
-            </ul>
+            </motion.ul>
           ) : (
-            <div className="space-y-4 md:space-y-6">
+            <motion.div className="space-y-4 md:space-y-6">
               {content.map((paragraph: string, i: number) => (
-                <p
+                <motion.p
                   key={i}
+                  variants={itemVariants}
                   className="text-white/90 text-xs md:text-sm font-normal text-left font-mono tracking-wide leading-relaxed"
                 >
                   {paragraph}
-                </p>
+                </motion.p>
               ))}
-            </div>
+            </motion.div>
           )}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
@@ -115,6 +166,29 @@ const InfoSection: React.FC = () => {
   const { isMobile } = useWindowSize();
   const nodeTypes = {
     custom: CustomNode,
+  };
+
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    }
+  }, [controls, inView]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        staggerChildren: 0.3,
+      },
+    },
   };
 
   const getMobilePositions = () => ({
@@ -254,7 +328,11 @@ const InfoSection: React.FC = () => {
     : [];
 
   return (
-    <div
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={controls}
+      variants={containerVariants}
       className={`w-full max-w-[1350px] mx-auto ${
         isMobile ? 'h-[2000px]' : 'h-[1200px]'
       }`}
@@ -279,7 +357,7 @@ const InfoSection: React.FC = () => {
         preventScrolling={false}
         proOptions={{ hideAttribution: true }}
       />
-    </div>
+    </motion.div>
   );
 };
 
