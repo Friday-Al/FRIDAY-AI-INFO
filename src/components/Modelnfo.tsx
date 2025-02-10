@@ -76,7 +76,7 @@ const ModelInfo = () => {
   ];
 
   return (
-    <div className="w-full relative h-full py-28">
+    <div className="w-full relative h-full pt-28">
       <section
         className="w-[90%] mx-auto py-4 px-5 h-full flex items-center justify-center gap-28 max-md:flex-col z-10 relative"
         id="how-it-works"
