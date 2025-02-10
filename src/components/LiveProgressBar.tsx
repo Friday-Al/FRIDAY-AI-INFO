@@ -34,7 +34,7 @@ const LiveProgressBar = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className={`w-full py-3 px-4 text-white flex items-center gap-3 border border-white border-opacity-10 bg-black ${
+          className={`w-full py-3 px-4 text-white flex items-center gap-3 border border-white border-opacity-10 bg-black focus:outline-none ${
             isOpen ? 'rounded-t-md' : 'rounded-md'
           }`}
         >
