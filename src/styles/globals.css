@@ -17,13 +17,20 @@
 @layer base {
   :root {
     --max-w-lg: 1440px;
-    --max-w-sm: 1000px;
+    --max-w-sm: 800px;
   }
+}
+
+html{
+  scroll-behavior: smooth;
 }
 
 
 body {
   background-color: black !important;;
+}
+
+.dotted-background {
   background-size: 40px 40px;
   background-image: radial-gradient(circle, rgba(255, 255, 255, 0.15) 1px, rgba(0, 0, 0, 0) 1px);
 }
