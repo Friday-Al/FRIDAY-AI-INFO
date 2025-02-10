@@ -117,7 +117,7 @@ const DashboardShow = () => {
         />
       </motion.div>
 
-      <div className="border-y border-white border-opacity-10 w-full bg-black">
+      <div className="border-y border-white border-opacity-[0.06] w-full bg-black">
         <motion.div
           ref={textRef}
           initial="hidden"
