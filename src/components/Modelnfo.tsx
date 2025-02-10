@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import Image from 'next/image';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import FlowDiagram from '@/assets/FlowDiagram';
