@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import FlowDiagram from '@/assets/FlowDiagram';
 
 const ModelInfo = () => {
   const textControls = useAnimation();
@@ -75,9 +76,9 @@ const ModelInfo = () => {
   ];
 
   return (
-    <div className="w-full dotted-background">
+    <div className="w-full relative h-full py-28">
       <section
-        className="w-[90%] mx-auto py-4 px-5 h-full flex items-center justify-between gap-10 max-md:flex-col"
+        className="w-[90%] mx-auto py-4 px-5 h-full flex items-center justify-center gap-28 max-md:flex-col z-10 relative"
         id="how-it-works"
       >
         <motion.div
@@ -107,18 +108,13 @@ const ModelInfo = () => {
           initial="hidden"
           animate={imageControls}
           variants={imageVariants}
-          className="w-full md:w-1/2"
+          className="w-full md:w-1/2 max-w-[800px]"
         >
-          <Image
-            src="/images/diagram.png"
-            alt="model"
-            width={704}
-            height={768}
-            quality={100}
-            className="w-full h-auto"
-          />
+          <FlowDiagram className="w-full h-auto" />
         </motion.div>
       </section>
+      <div className="dotted-background w-full h-full absolute inset-0 z-0"></div>
+      <div className="gradient-to-bottom absolute inset-0 w-full h-full z-[2]"></div>
     </div>
   );
 };

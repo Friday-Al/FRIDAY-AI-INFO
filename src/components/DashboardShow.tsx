@@ -55,7 +55,7 @@ const DashboardShow = () => {
       text: 'BUY $FRIDAY   >',
       color: '#FFFFFF',
       bgColor: '#d8d8d814',
-      href: 'https://dexscreener.com/solana/fdqkxnuypejdhuxwvx1sscfxeuzhsmtmsralhesdffnh',
+      href: 'https://jup.ag/swap/SOL-B29VFNAL4vh7rNcZMCmsHkZaYzUaVj3UinU3dFh6pump',
     },
   ];
 
@@ -104,7 +104,7 @@ const DashboardShow = () => {
         initial="hidden"
         animate={imageControls}
         variants={imageVariants}
-        className="relative w-full aspect-[2033/1047] max-w-[90%] mx-auto"
+        className="relative w-full aspect-[2200/1109] max-w-[90%] mx-auto"
       >
         <Image
           src="/images/dashboard.png"
@@ -112,6 +112,7 @@ const DashboardShow = () => {
           alt="dashboard"
           className="object-fit"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
+          quality={100}
           priority
         />
       </motion.div>

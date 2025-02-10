@@ -11,8 +11,8 @@ const InfoSection = dynamic(() => import('@/components/InfoSection'), {
 
 const Page = () => {
   return (
-    <div className="w-full h-full flex flex-col gap-20">
-      <div className="small-container space-y-20 seperator-line px-10 py-6 max-md:py-4 max-md:px-5">
+    <div className="w-full h-full flex flex-col">
+      <div className="small-container my-20 seperator-line px-10 py-6 max-md:py-4 max-md:px-5">
         <HeroText />
       </div>
 

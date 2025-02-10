@@ -22,7 +22,7 @@ const LiveProgressBar = () => {
   ];
 
   return (
-    <div className="relative flex justify-center">
+    <div className="relative flex justify-center no-scrollbar">
       <motion.div
         initial={{ width: 'auto' }}
         animate={{ width: isOpen ? '600px' : 'auto' }}
@@ -34,7 +34,7 @@ const LiveProgressBar = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className={`w-full py-3 px-4 text-white flex items-center gap-3 border border-white border-opacity-10 bg-black focus:outline-none ${
+          className={`w-full py-3 px-4 text-white flex items-center gap-3 border border-white border-opacity-10 bg-black focus:outline-none no-scrollbar ${
             isOpen ? 'rounded-t-md' : 'rounded-md'
           }`}
         >
