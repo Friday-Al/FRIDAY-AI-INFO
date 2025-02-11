@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { motion, useAnimation } from 'framer-motion';
+import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useInView } from 'react-intersection-observer';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface Slogan {
   text: string;
@@ -15,6 +16,9 @@ const DashboardShow = () => {
   const router = useRouter();
   const imageControls = useAnimation();
   const textControls = useAnimation();
+  const [currentSloganIndex, setCurrentSloganIndex] = useState(0);
+
+  const isMobile = useIsMobile();
 
   const [imageRef, imageInView] = useInView({
     threshold: 0.2,
@@ -37,6 +41,16 @@ const DashboardShow = () => {
       textControls.start('visible');
     }
   }, [textControls, textInView]);
+
+  useEffect(() => {
+    if (isMobile) {
+      const interval = setInterval(() => {
+        setCurrentSloganIndex((prev) => (prev + 1) % slogans.length);
+      }, 3000);
+
+      return () => clearInterval(interval);
+    }
+  }, [isMobile]);
 
   const slogans: Slogan[] = [
     {
@@ -78,6 +92,12 @@ const DashboardShow = () => {
         duration: 0.3,
       },
     },
+  };
+
+  const slideVariants = {
+    enter: { x: 50, opacity: 0 },
+    center: { x: 0, opacity: 1 },
+    exit: { x: -50, opacity: 0 },
   };
 
   const imageVariants = {
@@ -125,24 +145,55 @@ const DashboardShow = () => {
           variants={containerVariants}
           className="w-[90%] md:w-[80%] mx-auto flex flex-col md:flex-row justify-between items-center py-4 md:py-7 space-y-4 md:space-y-0"
         >
-          {slogans.map((slogan, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={`
-                font-normal text-xs md:text-sm leading-[16.8px] tracking-[0px] py-2 px-4 rounded-[4px] text-center md:text-left w-full md:w-auto
-                ${slogan.href && 'cursor-pointer'}`}
-              style={{
-                color: slogan.color,
-                backgroundColor: slogan.bgColor,
-              }}
-              onClick={() => onItemClick(slogan.href)}
-            >
-              {slogan.text}
-            </motion.div>
-          ))}
+          {isMobile ? (
+            <div className="w-full h-[50px] relative overflow-hidden">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentSloganIndex}
+                  variants={slideVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 1, ease: 'easeInOut' }}
+                  className="absolute w-full"
+                >
+                  <div
+                    className={`
+                      font-normal text-sm leading-[16.8px] tracking-[0px] py-2 px-4 rounded-[4px] text-center w-full
+                      ${slogans[currentSloganIndex].href && 'cursor-pointer'}`}
+                    style={{
+                      color: slogans[currentSloganIndex].color,
+                      backgroundColor: slogans[currentSloganIndex].bgColor,
+                    }}
+                    onClick={() =>
+                      onItemClick(slogans[currentSloganIndex].href)
+                    }
+                  >
+                    {slogans[currentSloganIndex].text}
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          ) : (
+            slogans.map((slogan, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`
+                  font-normal text-sm leading-[16.8px] tracking-[0px] py-2 px-4 rounded-[4px] text-center md:text-left w-full md:w-auto
+                  ${slogan.href && 'cursor-pointer'}`}
+                style={{
+                  color: slogan.color,
+                  backgroundColor: slogan.bgColor,
+                }}
+                onClick={() => onItemClick(slogan.href)}
+              >
+                {slogan.text}
+              </motion.div>
+            ))
+          )}
         </motion.div>
       </div>
     </div>
