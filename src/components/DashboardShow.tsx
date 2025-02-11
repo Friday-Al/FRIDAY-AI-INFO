@@ -53,7 +53,7 @@ const DashboardShow = () => {
       color: '#2FEF92',
     },
     {
-      text: '1.5M $FRIDAY BURNED',
+      text: '1.55M $FRIDAY BURNED',
       color: '#FF5843',
     },
   ];
