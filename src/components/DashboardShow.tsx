@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
@@ -42,17 +43,7 @@ const DashboardShow = () => {
     }
   }, [textControls, textInView]);
 
-  useEffect(() => {
-    if (isMobile) {
-      const interval = setInterval(() => {
-        setCurrentSloganIndex((prev) => (prev + 1) % slogans.length);
-      }, 3000);
-
-      return () => clearInterval(interval);
-    }
-  }, [isMobile]);
-
-  const slogans: Slogan[] = [
+  const staticSlogans: Slogan[] = [
     {
       text: '15 TOKENS LAUNCHED',
       color: '#FFFFFF',
@@ -65,13 +56,24 @@ const DashboardShow = () => {
       text: '2.5M $FRIDAY BURNED',
       color: '#FF5843',
     },
-    {
-      text: 'BUY $FRIDAY   >',
-      color: '#FFFFFF',
-      bgColor: '#d8d8d814',
-      href: 'https://jup.ag/swap/SOL-B29VFNAL4vh7rNcZMCmsHkZaYzUaVj3UinU3dFh6pump',
-    },
   ];
+
+  const buyButton: Slogan = {
+    text: 'BUY $FRIDAY   >',
+    color: '#FFFFFF',
+    bgColor: '#d8d8d814',
+    href: 'https://jup.ag/swap/SOL-B29VFNAL4vh7rNcZMCmsHkZaYzUaVj3UinU3dFh6pump',
+  };
+
+  useEffect(() => {
+    if (isMobile) {
+      const interval = setInterval(() => {
+        setCurrentSloganIndex((prev) => (prev + 1) % staticSlogans.length);
+      }, 3000);
+
+      return () => clearInterval(interval);
+    }
+  }, [isMobile]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -146,36 +148,47 @@ const DashboardShow = () => {
           className="w-[90%] md:w-[80%] mx-auto flex flex-col md:flex-row justify-between items-center py-4 md:py-7 space-y-4 md:space-y-0"
         >
           {isMobile ? (
-            <div className="w-full h-[50px] relative overflow-hidden">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentSloganIndex}
-                  variants={slideVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{ duration: 1, ease: 'easeInOut' }}
-                  className="absolute w-full"
-                >
-                  <div
-                    className={`
-                      font-normal text-sm leading-[16.8px] tracking-[0px] py-2 px-4 rounded-[4px] text-center w-full
-                      ${slogans[currentSloganIndex].href && 'cursor-pointer'}`}
-                    style={{
-                      color: slogans[currentSloganIndex].color,
-                      backgroundColor: slogans[currentSloganIndex].bgColor,
-                    }}
-                    onClick={() =>
-                      onItemClick(slogans[currentSloganIndex].href)
-                    }
+            <div className="w-full flex flex-col gap-4">
+              <div className="w-full h-[33px] relative overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentSloganIndex}
+                    variants={slideVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{ duration: 1, ease: 'easeInOut' }}
+                    className="absolute w-full"
                   >
-                    {slogans[currentSloganIndex].text}
-                  </div>
-                </motion.div>
-              </AnimatePresence>
+                    <div
+                      className="font-normal text-sm leading-[16.8px] tracking-[0px] py-2 px-4 rounded-[4px] text-center w-full"
+                      style={{
+                        color: staticSlogans[currentSloganIndex].color,
+                        backgroundColor:
+                          staticSlogans[currentSloganIndex].bgColor,
+                      }}
+                    >
+                      {staticSlogans[currentSloganIndex].text}
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+              <motion.div
+                variants={itemVariants}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="cursor-pointer font-normal text-sm leading-[16.8px] tracking-[0px] py-2 px-4 rounded-[4px] text-center w-full"
+                style={{
+                  color: buyButton.color,
+                  backgroundColor: buyButton.bgColor,
+                }}
+                onClick={() => onItemClick(buyButton.href)}
+              >
+                {buyButton.text}
+              </motion.div>
             </div>
           ) : (
-            slogans.map((slogan, index) => (
+            [...staticSlogans, buyButton].map((slogan, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
