@@ -45,15 +45,15 @@ const DashboardShow = () => {
 
   const staticSlogans: Slogan[] = [
     {
-      text: '15 TOKENS LAUNCHED',
+      text: '5 TOKENS LAUNCHED',
       color: '#FFFFFF',
     },
     {
-      text: '$16K PROFITS',
+      text: '$3.3K PROFITS',
       color: '#2FEF92',
     },
     {
-      text: '2.5M $FRIDAY BURNED',
+      text: '1.5M $FRIDAY BURNED',
       color: '#FF5843',
     },
   ];
