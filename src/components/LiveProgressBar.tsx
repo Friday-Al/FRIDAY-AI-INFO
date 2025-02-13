@@ -70,7 +70,7 @@ const LiveProgressBar = () => {
               style={{ marginTop: -1 }}
               className="absolute top-full left-0 right-0 w-full z-10"
             >
-              <div className="rounded-b-md border border-white border-opacity-10 bg-black px-4 py-2 space-y-7 overflow-x-auto">
+              <div className="rounded-b-md border border-white border-opacity-10 bg-black px-4 py-2 space-y-7 overflow-x-auto no-scrollbar">
                 {/* Progress Steps */}
                 <div className="relative min-w-[500px] md:min-w-0">
                   <div className="flex justify-between relative z-10">

@@ -48,7 +48,7 @@ const Footer = () => {
       initial="hidden"
       animate={controls}
       variants={containerVariants}
-      className="w-full border-t border-white/10 pt-16 pb-4"
+      className="w-full border-t border-white/10 pt-16 pb-4 max-w-[1350px] mx-auto"
     >
       <div className="w-[90%] mx-auto space-y-60">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">

@@ -126,7 +126,7 @@ const DashboardShow = () => {
         initial="hidden"
         animate={imageControls}
         variants={imageVariants}
-        className="relative w-full aspect-[2200/1109] max-w-[90%] mx-auto"
+        className="relative w-full aspect-[2200/1109] max-w-[1350px] mx-auto"
       >
         <Image
           src="/images/dashboard.png"
@@ -145,7 +145,7 @@ const DashboardShow = () => {
           initial="hidden"
           animate={textControls}
           variants={containerVariants}
-          className="w-[90%] md:w-[80%] mx-auto flex flex-col md:flex-row justify-between items-center py-4 md:py-7 space-y-4 md:space-y-0"
+          className="w-[90%] md:w-[80%] mx-auto max-w-[1350px] flex flex-col md:flex-row justify-between items-center py-4 md:py-7 space-y-4 md:space-y-0"
         >
           {isMobile ? (
             <div className="w-full flex flex-col gap-4">
@@ -175,9 +175,7 @@ const DashboardShow = () => {
               </div>
               <motion.div
                 variants={itemVariants}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="cursor-pointer font-normal text-sm leading-[16.8px] tracking-[0px] py-2 px-4 rounded-[4px] text-center w-full"
+                className="cursor-pointer font-normal text-sm leading-[16.8px] tracking-[0px] py-2 px-4 rounded-[4px] text-center w-full !transition-colors !duration-200 !ease-out hover:!bg-white hover:!text-black"
                 style={{
                   color: buyButton.color,
                   backgroundColor: buyButton.bgColor,
@@ -192,11 +190,13 @@ const DashboardShow = () => {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
                 className={`
                   font-normal text-sm leading-[16.8px] tracking-[0px] py-2 px-4 rounded-[4px] text-center md:text-left w-full md:w-auto
-                  ${slogan.href && 'cursor-pointer'}`}
+                  ${
+                    slogan.href
+                      ? 'cursor-pointer !transition-colors !duration-200 !ease-out hover:!bg-white hover:!text-black'
+                      : ''
+                  }`}
                 style={{
                   color: slogan.color,
                   backgroundColor: slogan.bgColor,

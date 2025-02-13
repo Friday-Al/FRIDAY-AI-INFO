@@ -45,7 +45,7 @@ const Navbar = () => {
                 <Link
                   href={link.href}
                   target="_blank"
-                  className="transform transition-transform duration-200 hover:scale-110 hover:opacity-80"
+                  className="hover:opacity-60 ease-out transition-all duration-200"
                   aria-label={link.label}
                 >
                   {link.icon}
