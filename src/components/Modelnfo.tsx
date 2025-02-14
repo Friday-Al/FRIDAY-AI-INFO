@@ -89,11 +89,11 @@ const ModelInfo = () => {
         >
           <motion.h2
             variants={paragraphVariants}
-            className="font-normal text-[50px] leading-[55.7px] tracking-[0px] text-left"
+            className="font-normal text-[50px] leading-[55.7px] tracking-[0px] text-center md:text-left"
           >
             The Model
           </motion.h2>
-          <div className="flex flex-col w-full gap-4 font-semibold text-base leading-5 tracking-[-1px]">
+          <div className="flex flex-col w-full gap-4 font-semibold text-base leading-5 tracking-[-1px] text-center md:text-left">
             {paragraphs.map((text, index) => (
               <motion.p key={index} variants={paragraphVariants}>
                 {text}

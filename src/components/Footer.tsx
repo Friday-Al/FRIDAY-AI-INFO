@@ -48,9 +48,9 @@ const Footer = () => {
       initial="hidden"
       animate={controls}
       variants={containerVariants}
-      className="w-full border-t border-white/10 pt-16 pb-4 max-w-[1350px] mx-auto"
+      className="w-full border-t border-[#0C0C0C] pt-16 pb-4"
     >
-      <div className="w-[90%] mx-auto space-y-60">
+      <div className="w-[90%] mx-auto space-y-60 max-w-[1350px]">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
           {/* Logo Section */}
           <motion.div
@@ -89,7 +89,7 @@ const Footer = () => {
                       href={link.href}
                       className={`font-normal text-sm leading-[16.8px] ${
                         link.isActive
-                          ? 'text-white hover:text-white/80'
+                          ? 'text-white hover:text-white/50'
                           : 'text-white/40 cursor-not-allowed'
                       } transition-colors`}
                     >

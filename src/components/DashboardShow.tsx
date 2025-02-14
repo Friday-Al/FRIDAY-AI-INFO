@@ -190,16 +190,20 @@ const DashboardShow = () => {
               <motion.div
                 key={index}
                 variants={itemVariants}
+                initial={{ opacity: 1 }} // Ensures text is fully visible
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 1 }}
                 className={`
-                  font-normal text-sm leading-[16.8px] tracking-[0px] py-2 px-4 rounded-[4px] text-center md:text-left w-full md:w-auto
-                  ${
-                    slogan.href
-                      ? 'cursor-pointer !transition-colors !duration-200 !ease-out hover:!bg-white hover:!text-black'
-                      : ''
-                  }`}
+    font-normal text-sm leading-[16.8px] tracking-[0px] py-2 px-4 rounded-[4px] text-center md:text-left w-full md:w-auto
+    ${
+      slogan.href
+        ? 'cursor-pointer !transition-colors !duration-200 !ease-out hover:!bg-white hover:!text-black'
+        : ''
+    }`}
                 style={{
                   color: slogan.color,
                   backgroundColor: slogan.bgColor,
+                  opacity: 1, // Ensures full visibility
                 }}
                 onClick={() => onItemClick(slogan.href)}
               >

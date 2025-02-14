@@ -30,7 +30,7 @@ export default function RootLayout({
       <body
         className={`dark ${ProtoMono.className} antialiased w-full h-full space-y-10`}
       >
-        <div className="px-10 py-6 max-md:py-4 max-md:px-5 w-full">
+        <div className="px-10 py-6 max-md:py-4 max-md:px-5 w-full bg-red">
           <Navbar />
         </div>
         {children}

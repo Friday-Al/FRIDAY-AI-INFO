@@ -27,22 +27,21 @@ const LiveProgressBar = () => {
         initial={{ width: 'auto' }}
         animate={{ width: isOpen ? '600px' : 'auto' }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className="relative md:min-w-[280px]"
+        className="relative sm:w-auto md:min-w-[280px]"
       >
         <motion.button
           onClick={() => setIsOpen(!isOpen)}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className={`w-full py-3 px-4 text-white flex items-center gap-3 border border-white border-opacity-10 bg-black focus:outline-none no-scrollbar ${
-            isOpen ? 'rounded-t-md' : 'rounded-md'
-          }`}
+          className={`w-full py-3 px-4 text-white flex items-center gap-3 border border-white border-opacity-10 bg-black focus:outline-none no-scrollbar ${isOpen ? 'rounded-t-md' : 'rounded-md'
+            }`}
         >
           <p className="font-normal text-[10px] leading-3 tracking-[0px] whitespace-nowrap">
             LIVE RELEASE PROGRESS
           </p>
           {!isOpen && (
-            <div className="w-[127px] bg-white/20 hidden md:block">
+            <div className="w-[127px] bg-white/20 block">
               <motion.div
                 initial={{ width: '0%' }}
                 animate={{ width: '60%' }}
@@ -70,27 +69,25 @@ const LiveProgressBar = () => {
               style={{ marginTop: -1 }}
               className="absolute top-full left-0 right-0 w-full z-10"
             >
-              <div className="rounded-b-md border border-white border-opacity-10 bg-black px-4 py-2 space-y-7 overflow-x-auto no-scrollbar">
+              <div className="rounded-b-md border border-white border-opacity-10 bg-black px-4 py-3 space-y-7 overflow-x-auto no-scrollbar">
                 {/* Progress Steps */}
                 <div className="relative min-w-[500px] md:min-w-0">
                   <div className="flex justify-between relative z-10">
                     {phases.map((phase, index) => (
                       <div
                         key={phase.name}
-                        className={`flex flex-col ${
-                          phase.name === 'GITHUB RELEASE' ||
+                        className={`flex flex-col ${phase.name === 'GITHUB RELEASE' ||
                           phase.name === 'PLATFORM RELEASE'
-                            ? 'basis-36'
-                            : 'basis-24'
-                        }`}
+                          ? 'basis-36'
+                          : 'basis-24'
+                          }`}
                       >
                         <motion.p
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ delay: index * 0.1 }}
-                          className={`font-normal text-xs leading-[14.4px] tracking-[0px] whitespace-nowrap ${
-                            phase.completed ? 'text-white' : 'text-white/40'
-                          }`}
+                          className={`font-normal text-xs leading-[14.4px] tracking-[0px] whitespace-nowrap ${phase.completed ? 'text-white' : 'text-white/40'
+                            }`}
                           style={{
                             textAlign: phase.align,
                           }}

@@ -28,7 +28,7 @@ export const SOCIAL_LINKS = [
 
 export const FOOTER_ITEMS = [
   {
-    title: 'FRIDAY',
+    title: '$FRIDAY',
     links: [
       { label: 'HOW IT WORKS', href: '#how-it-works', isActive: true },
       {
