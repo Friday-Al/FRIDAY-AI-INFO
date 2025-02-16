@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: 
-  --foreground: #ededed;
+  --background:
+    --foreground: #ededed;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,15 +17,40 @@
 @layer base {
   :root {
     --max-w-lg: 1440px;
-    --max-w-sm: 1000px;
+    --max-w-sm: 800px;
   }
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 
 body {
-  background-color: black !important;;
+  background-color: black !important;
+}
+
+.menu-width {
+  width: calc(100% + 2.5rem);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.dotted-background {
   background-size: 40px 40px;
   background-image: radial-gradient(circle, rgba(255, 255, 255, 0.15) 1px, rgba(0, 0, 0, 0) 1px);
+}
+
+.gradient-to-bottom {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+  background-size: 100% 160%;
 }
 
 .large-container {
@@ -38,6 +63,7 @@ body {
   margin: 0 auto;
 }
 
-.react-flow__viewport,.react-flow__container{
+.react-flow__viewport,
+.react-flow__container {
   transform: translate(0px, 0px) scale(1) !important;
 }

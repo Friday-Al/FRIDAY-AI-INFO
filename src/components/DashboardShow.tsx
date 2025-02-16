@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { motion, useAnimation } from 'framer-motion';
+import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useInView } from 'react-intersection-observer';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface Slogan {
   text: string;
@@ -15,6 +17,9 @@ const DashboardShow = () => {
   const router = useRouter();
   const imageControls = useAnimation();
   const textControls = useAnimation();
+  const [currentSloganIndex, setCurrentSloganIndex] = useState(0);
+
+  const isMobile = useIsMobile();
 
   const [imageRef, imageInView] = useInView({
     threshold: 0.2,
@@ -38,33 +43,44 @@ const DashboardShow = () => {
     }
   }, [textControls, textInView]);
 
-  const slogans: Slogan[] = [
+  const staticSlogans: Slogan[] = [
     {
-      text: '15 TOKENS LAUNCHED',
+      text: '5 TOKENS LAUNCHED',
       color: '#FFFFFF',
     },
     {
-      text: '$16K PROFITS',
+      text: '$3.3K PROFITS',
       color: '#2FEF92',
     },
     {
-      text: '2.5M $FRIDAY BURNED',
+      text: '1.55M $FRIDAY BURNED',
       color: '#FF5843',
     },
-    {
-      text: 'BUY $FRIDAY   >',
-      color: '#FFFFFF',
-      bgColor: '#d8d8d814',
-      href: 'https://dexscreener.com/solana/fdqkxnuypejdhuxwvx1sscfxeuzhsmtmsralhesdffnh',
-    },
   ];
+
+  const buyButton: Slogan = {
+    text: 'BUY $FRIDAY   >',
+    color: '#FFFFFF',
+    bgColor: '#d8d8d814',
+    href: 'https://jup.ag/swap/SOL-B29VFNAL4vh7rNcZMCmsHkZaYzUaVj3UinU3dFh6pump',
+  };
+
+  useEffect(() => {
+    if (isMobile) {
+      const interval = setInterval(() => {
+        setCurrentSloganIndex((prev) => (prev + 1) % staticSlogans.length);
+      }, 3000);
+
+      return () => clearInterval(interval);
+    }
+  }, [isMobile]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.1,
       },
     },
   };
@@ -75,18 +91,24 @@ const DashboardShow = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.3,
       },
     },
   };
 
+  const slideVariants = {
+    enter: { x: 50, opacity: 0 },
+    center: { x: 0, opacity: 1 },
+    exit: { x: -50, opacity: 0 },
+  };
+
   const imageVariants = {
-    hidden: { opacity: 0, scale: 0.95 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
-      scale: 1,
+      y: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.3,
         ease: 'easeOut',
       },
     },
@@ -104,7 +126,7 @@ const DashboardShow = () => {
         initial="hidden"
         animate={imageControls}
         variants={imageVariants}
-        className="relative w-full aspect-[2033/1047] max-w-[90%] mx-auto"
+        className="relative w-full aspect-[2200/1109] max-w-[1350px] mx-auto"
       >
         <Image
           src="/images/dashboard.png"
@@ -112,36 +134,83 @@ const DashboardShow = () => {
           alt="dashboard"
           className="object-fit"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
+          quality={100}
           priority
         />
       </motion.div>
 
-      <div className="border-y border-white border-opacity-10 w-full bg-black">
+      <div className="border-y border-white border-opacity-[0.06] w-full bg-black">
         <motion.div
           ref={textRef}
           initial="hidden"
           animate={textControls}
           variants={containerVariants}
-          className="w-[90%] md:w-[80%] mx-auto flex flex-col md:flex-row justify-between items-center py-4 md:py-7 space-y-4 md:space-y-0"
+          className="w-[90%] md:w-[80%] mx-auto max-w-[1350px] flex flex-col md:flex-row justify-between items-center py-4 md:py-7 space-y-4 md:space-y-0"
         >
-          {slogans.map((slogan, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={`
-                font-normal text-xs md:text-sm leading-[16.8px] tracking-[0px] py-2 px-4 rounded-[4px] text-center md:text-left w-full md:w-auto
-                ${slogan.href && 'cursor-pointer'}`}
-              style={{
-                color: slogan.color,
-                backgroundColor: slogan.bgColor,
-              }}
-              onClick={() => onItemClick(slogan.href)}
-            >
-              {slogan.text}
-            </motion.div>
-          ))}
+          {isMobile ? (
+            <div className="w-full flex flex-col gap-4">
+              <div className="w-full h-[33px] relative overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentSloganIndex}
+                    variants={slideVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{ duration: 1, ease: 'easeInOut' }}
+                    className="absolute w-full"
+                  >
+                    <div
+                      className="font-normal text-sm leading-[16.8px] tracking-[0px] py-2 px-4 rounded-[4px] text-center w-full"
+                      style={{
+                        color: staticSlogans[currentSloganIndex].color,
+                        backgroundColor:
+                          staticSlogans[currentSloganIndex].bgColor,
+                      }}
+                    >
+                      {staticSlogans[currentSloganIndex].text}
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+              <motion.div
+                variants={itemVariants}
+                className="cursor-pointer font-normal text-sm leading-[16.8px] tracking-[0px] py-2 px-4 rounded-[4px] text-center w-full !transition-colors !duration-200 !ease-out hover:!bg-white hover:!text-black"
+                style={{
+                  color: buyButton.color,
+                  backgroundColor: buyButton.bgColor,
+                }}
+                onClick={() => onItemClick(buyButton.href)}
+              >
+                {buyButton.text}
+              </motion.div>
+            </div>
+          ) : (
+            [...staticSlogans, buyButton].map((slogan, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                initial={{ opacity: 1 }} // Ensures text is fully visible
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 1 }}
+                className={`
+    font-normal text-sm leading-[16.8px] tracking-[0px] py-2 px-4 rounded-[4px] text-center md:text-left w-full md:w-auto
+    ${
+      slogan.href
+        ? 'cursor-pointer !transition-colors !duration-200 !ease-out hover:!bg-white hover:!text-black'
+        : ''
+    }`}
+                style={{
+                  color: slogan.color,
+                  backgroundColor: slogan.bgColor,
+                  opacity: 1, // Ensures full visibility
+                }}
+                onClick={() => onItemClick(slogan.href)}
+              >
+                {slogan.text}
+              </motion.div>
+            ))
+          )}
         </motion.div>
       </div>
     </div>

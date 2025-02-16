@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import Image from 'next/image';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import FlowDiagram from '@/assets/FlowDiagram';
 
 const ModelInfo = () => {
   const textControls = useAnimation();
@@ -30,37 +30,36 @@ const ModelInfo = () => {
   }, [imageControls, imageInView]);
 
   const textVariants = {
-    hidden: { opacity: 0, x: -50 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
-      x: 0,
+      y: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.3,
         ease: 'easeOut',
-        staggerChildren: 0.2,
+        staggerChildren: 0.1,
       },
     },
   };
 
   const paragraphVariants = {
-    hidden: { opacity: 0, x: -20 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
-      x: 0,
+      y: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.3,
       },
     },
   };
 
   const imageVariants = {
-    hidden: { opacity: 0, scale: 0.95, x: 50 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
-      scale: 1,
-      x: 0,
+      y: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.3,
         ease: 'easeOut',
       },
     },
@@ -76,45 +75,45 @@ const ModelInfo = () => {
   ];
 
   return (
-    <div className="w-[90%] mx-auto py-4 px-5 h-full flex items-center justify-between gap-10 max-md:flex-col">
-      <motion.div
-        ref={textRef}
-        initial="hidden"
-        animate={textControls}
-        variants={textVariants}
-        className="w-full max-w-md text-white space-y-6"
+    <div className="w-full relative h-full pt-28">
+      <section
+        className="w-[90%] mx-auto py-4 px-5 h-full flex items-center justify-center gap-28 max-md:flex-col z-10 relative"
+        id="how-it-works"
       >
-        <motion.h2
-          variants={paragraphVariants}
-          className="font-normal text-[50px] leading-[55.7px] tracking-[0px] text-left"
+        <motion.div
+          ref={textRef}
+          initial="hidden"
+          animate={textControls}
+          variants={textVariants}
+          className="w-full max-w-md text-white space-y-6"
         >
-          The Model
-        </motion.h2>
-        <div className="flex flex-col w-full gap-4 font-semibold text-base leading-5 tracking-[-1px]">
-          {paragraphs.map((text, index) => (
-            <motion.p key={index} variants={paragraphVariants}>
-              {text}
-            </motion.p>
-          ))}
-        </div>
-      </motion.div>
+          <motion.h2
+            variants={paragraphVariants}
+            className="font-normal text-[50px] leading-[55.7px] tracking-[0px] text-center md:text-left"
+          >
+            The Model
+          </motion.h2>
+          <div className="flex flex-col w-full gap-4 font-semibold text-base leading-5 tracking-[-1px] text-center md:text-left">
+            {paragraphs.map((text, index) => (
+              <motion.p key={index} variants={paragraphVariants}>
+                {text}
+              </motion.p>
+            ))}
+          </div>
+        </motion.div>
 
-      <motion.div
-        ref={imageRef}
-        initial="hidden"
-        animate={imageControls}
-        variants={imageVariants}
-        className="w-full md:w-1/2"
-      >
-        <Image
-          src="/images/diagram.png"
-          alt="model"
-          width={704}
-          height={768}
-          quality={100}
-          className="w-full h-auto"
-        />
-      </motion.div>
+        <motion.div
+          ref={imageRef}
+          initial="hidden"
+          animate={imageControls}
+          variants={imageVariants}
+          className="w-full md:w-1/2 max-w-[800px]"
+        >
+          <FlowDiagram className="w-full h-auto" />
+        </motion.div>
+      </section>
+      <div className="dotted-background w-full h-full absolute inset-0 z-0"></div>
+      <div className="gradient-to-bottom absolute inset-0 w-full h-full z-[2]"></div>
     </div>
   );
 };

@@ -53,7 +53,7 @@ interface CustomNodeProps {
 
 const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
   const { isMobile } = useWindowSize();
-  const { icon, title, content, type, isRightSide } = data;
+  const { icon, title, content, type } = data;
   const controls = useAnimation();
   const [ref, inView] = useInView({
     threshold: 0.2,
@@ -69,13 +69,13 @@ const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
   const containerVariants = {
     hidden: {
       opacity: 0,
-      x: isRightSide ? 50 : -50,
+      y: 20,
     },
     visible: {
       opacity: 1,
-      x: 0,
+      y: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.3,
         ease: 'easeOut',
         staggerChildren: 0.1,
       },
@@ -88,7 +88,7 @@ const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.3,
       },
     },
   };
@@ -96,7 +96,7 @@ const CustomNode: React.FC<CustomNodeProps> = ({ data }) => {
   return (
     <div className={isMobile ? 'w-[300px] mx-auto' : 'w-[598px]'}>
       {!isMobile &&
-        (isRightSide ? (
+        (data.isRightSide ? (
           <Handle
             type="target"
             position={Position.Left}
@@ -181,12 +181,16 @@ const InfoSection: React.FC = () => {
   }, [controls, inView]);
 
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: {
+      opacity: 0,
+      y: 20,
+    },
     visible: {
       opacity: 1,
+      y: 0,
       transition: {
-        duration: 0.8,
-        staggerChildren: 0.3,
+        duration: 0.3,
+        staggerChildren: 0.1,
       },
     },
   };
