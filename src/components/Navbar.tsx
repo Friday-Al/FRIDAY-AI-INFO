@@ -33,8 +33,22 @@ const Navbar = () => {
         </motion.div>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-4">
           <LiveProgressBar />
+
+          {/* Dashboard Button */}
+          <motion.a
+            href="https://dashboard.friday.run"
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            className="font-normal text-sm leading-[16.8px] tracking-[0px] py-2 px-4 rounded-md text-center border border-white border-opacity-10 text-white bg-black hover:bg-white hover:text-black transition-colors duration-200 ease-out whitespace-nowrap"
+          >
+            Launch Beta &gt;
+          </motion.a>
+
           <div className="flex items-center gap-4">
             {SOCIAL_LINKS.map((link, index) => (
               <motion.div
@@ -95,6 +109,20 @@ const Navbar = () => {
           >
             <div className="p-4 space-y-4">
               <LiveProgressBar />
+
+              {/* Dashboard Button for Mobile */}
+              <motion.a
+                href="https://dashboard.friday.run"
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+                className="font-normal text-sm leading-[16.8px] tracking-[0px] py-2 px-4 rounded-md text-center border border-white border-opacity-10 text-white bg-black hover:bg-white hover:text-black transition-colors duration-200 ease-out whitespace-nowrap"
+              >
+                Launch Beta &gt;
+              </motion.a>
+
               <div className="flex justify-center gap-6 pt-[26px] pb-2">
                 {SOCIAL_LINKS.map((link, index) => (
                   <motion.div
