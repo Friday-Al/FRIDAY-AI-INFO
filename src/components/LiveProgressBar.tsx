@@ -17,7 +17,7 @@ const LiveProgressBar = () => {
     { name: 'ROADMAP', completed: true, align: 'left' },
     { name: 'GITHUB RELEASE', completed: true, align: 'center' },
     { name: 'DEMO', completed: true, align: 'center' },
-    { name: 'BETA', completed: false, align: 'center' },
+    { name: 'BETA', completed: true, align: 'center' },
     { name: 'PLATFORM RELEASE', completed: false, align: 'right' },
   ];
 
@@ -34,8 +34,9 @@ const LiveProgressBar = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className={`w-full py-3 px-4 text-white flex items-center gap-3 border border-white border-opacity-10 bg-black focus:outline-none no-scrollbar ${isOpen ? 'rounded-t-md' : 'rounded-md'
-            }`}
+          className={`w-full py-3 px-4 text-white flex items-center gap-3 border border-white border-opacity-10 bg-black focus:outline-none no-scrollbar ${
+            isOpen ? 'rounded-t-md' : 'rounded-md'
+          }`}
         >
           <p className="font-normal text-[10px] leading-3 tracking-[0px] whitespace-nowrap">
             LIVE RELEASE PROGRESS
@@ -44,7 +45,7 @@ const LiveProgressBar = () => {
             <div className="w-[127px] bg-white/20 block">
               <motion.div
                 initial={{ width: '0%' }}
-                animate={{ width: '60%' }}
+                animate={{ width: '80%' }}
                 transition={{ duration: 1, delay: 0.5 }}
                 className="h-[3px] bg-white"
               />
@@ -76,18 +77,20 @@ const LiveProgressBar = () => {
                     {phases.map((phase, index) => (
                       <div
                         key={phase.name}
-                        className={`flex flex-col ${phase.name === 'GITHUB RELEASE' ||
+                        className={`flex flex-col ${
+                          phase.name === 'GITHUB RELEASE' ||
                           phase.name === 'PLATFORM RELEASE'
-                          ? 'basis-36'
-                          : 'basis-24'
-                          }`}
+                            ? 'basis-36'
+                            : 'basis-24'
+                        }`}
                       >
                         <motion.p
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ delay: index * 0.1 }}
-                          className={`font-normal text-xs leading-[14.4px] tracking-[0px] whitespace-nowrap ${phase.completed ? 'text-white' : 'text-white/40'
-                            }`}
+                          className={`font-normal text-xs leading-[14.4px] tracking-[0px] whitespace-nowrap ${
+                            phase.completed ? 'text-white' : 'text-white/40'
+                          }`}
                           style={{
                             textAlign: phase.align,
                           }}
@@ -102,7 +105,7 @@ const LiveProgressBar = () => {
                   <div className="absolute top-[26px] left-0 right-0 h-[3px] bg-white/20">
                     <motion.div
                       initial={{ width: '0%' }}
-                      animate={{ width: '57%' }}
+                      animate={{ width: '80%' }}
                       transition={{ duration: 1, delay: 0.3 }}
                       className="h-full bg-white"
                     />
@@ -120,7 +123,7 @@ const LiveProgressBar = () => {
                     NEXT PHASE:
                   </span>
                   <span className="font-normal text-[10px] leading-3 tracking-[0px] text-white whitespace-nowrap">
-                    BETA AVAILABLE TO ALL TOKEN HOLDERS
+                    PLATFORM RELEASE COMING SOON
                   </span>
                 </motion.div>
               </div>
